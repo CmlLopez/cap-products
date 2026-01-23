@@ -1,6 +1,16 @@
 namespace com.logali;
 
+// Type personalizado: no recomendado por SAP
 type Name : String(50);
+
+// Type estructurado:
+type Address {
+    Street     : String;
+    City       : String;
+    State      : String(2);
+    PostalCode : String(5);
+    Country    : String(3);
+};
 
 entity Products {
     key ID               : UUID;
@@ -17,7 +27,8 @@ entity Products {
 
 }
 
-entity Supplier {
+// Tipo 1: sin estructuras entity plano
+entity Suppliers {
     key ID         : UUID;
         Name       : String;
         Street     : String;
@@ -28,6 +39,35 @@ entity Supplier {
         Email      : String;
         Phone      : String;
         Fax        : String;
+
+};
+
+// Tipo 2: LLamando a estructuras definidas en línea 7
+entity Suppliers_01 {
+    key ID      : UUID;
+        Name    : String;
+        Address : Address;
+        Email   : String;
+        Phone   : String;
+        Fax     : String;
+
+};
+
+// Tipo 3 (inner Type): Se declara la estructura dentro del entity (pooco usado)
+entity Suppliers_02 {
+    key ID      : UUID;
+        Name    : String;
+        Address : {
+            Street     : String;
+            City       : String;
+            State      : String(2);
+            PostalCode : String(5);
+            Country    : String(3);
+
+        };
+        Email   : String;
+        Phone   : String;
+        Fax     : String;
 
 };
 
