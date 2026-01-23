@@ -1,5 +1,7 @@
 namespace com.logali;
 
+
+
 entity Products {
     key ID               : UUID;
         Name             : String;
@@ -13,7 +15,7 @@ entity Products {
         Depth            : Decimal(16, 2);
         Quantity         : Decimal(16, 2);
 
-    ,
+}
 
 entity Supplier {
     key ID         : UUID;
@@ -29,7 +31,7 @@ entity Supplier {
 
 };
 
-entity Category {
+entity Categories {
     key ID   : String(1);
         Name : String;
 };
@@ -55,9 +57,9 @@ entity DimensionUnits {
 }
 
 entity Months {
-    key ID               : string(2);
-        Description      : string;
-        shortdescription : string(3);
+    key ID               : String(2);
+        Description      : String;
+        shortdescription : String(3);
 }
 
 entity ProductReview {
@@ -67,7 +69,8 @@ entity ProductReview {
 }
 
 entity SalesData {
-    key deliverydate : DateTime;
+    key ID           : UUID;
+        Deliverydate : DateTime;
         Revenue      : Decimal(16, 2);
 
 }
