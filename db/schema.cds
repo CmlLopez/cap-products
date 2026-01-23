@@ -1,6 +1,6 @@
 namespace com.logali;
 
-
+type Name : String(50);
 
 entity Products {
     key ID               : UUID;
