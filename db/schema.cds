@@ -1,7 +1,7 @@
 namespace com.logali;
 
 // Type personalizado: no recomendado por SAP
-type Name : String(50);
+type Name              : String(50);
 
 // Type estructurado:
 type Address {
@@ -11,6 +11,26 @@ type Address {
     PostalCode : String(5);
     Country    : String(3);
 };
+
+// type EmailAddresses_01 : many {
+//     kind  : String;
+//     email : String
+// };
+
+// type EmailAddresses_02 {
+//     kind  : String;
+//     email : String
+// };
+
+// entity Emails {
+//     email_01 : EmailAddresses_01;
+//     email_02 : many EmailAddresses_02;
+//     email_03 : many {
+//         kind  : String;
+//         email : String
+//     };
+
+// };
 
 entity Products {
     key ID               : UUID;
@@ -29,16 +49,12 @@ entity Products {
 
 // Tipo 1: sin estructuras entity plano
 entity Suppliers {
-    key ID         : UUID;
-        Name       : String;
-        Street     : String;
-        City       : String;
-        State      : String(2);
-        PostalCode : String(5);
-        Country    : String(3);
-        Email      : String;
-        Phone      : String;
-        Fax        : String;
+    key ID      : UUID;
+        Name    : String;
+        Address : Address;
+        Email   : String;
+        Phone   : String;
+        Fax     : String;
 
 };
 
