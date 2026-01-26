@@ -52,6 +52,15 @@ type Address {
 //     };
 // };
 
+// entity Cars{
+//     key ID : UUID;
+//     Name: String;
+//     virtual Discount_1: Decimal;
+//     @Core.Computed : false
+//     virtual Discount_2: Decimal;
+
+// };
+
 type Dec: Decimal(16,2);
 entity Products {
     key ID               : UUID;
