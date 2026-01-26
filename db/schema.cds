@@ -162,3 +162,5 @@ entity SalesData {
         Revenue      : Decimal(16, 2);
 
 }
+
+entity SelProducts as select Name from Products where Name like '%Soda%';
