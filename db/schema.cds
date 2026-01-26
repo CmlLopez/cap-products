@@ -32,6 +32,7 @@ type Address {
 
 // };
 
+type Dec: Decimal(16,2);
 entity Products {
     key ID               : UUID;
         Name             : String;
@@ -39,8 +40,8 @@ entity Products {
         ImageUrl         : String;
         ReleaseDate      : DateTime;
         DiscontinuedDate : DateTime;
-        Price            : Decimal(16, 2);
-        Height           : Decimal(16, 2);
+        Price            : Dec;
+        Height           : type of Price; //Decimal(16, 2);
         Width            : Decimal(16, 2);
         Depth            : Decimal(16, 2);
         Quantity         : Decimal(16, 2);
@@ -50,7 +51,8 @@ entity Products {
 // Tipo 1: sin estructuras entity plano
 entity Suppliers {
     key ID      : UUID;
-        Name    : String;
+        // Name    : type of Products:Name; //String;
+        Name    : Products:Name; //String;
         Address : Address;
         Email   : String;
         Phone   : String;
