@@ -55,7 +55,7 @@ type Address {
 type Dec: Decimal(16,2);
 entity Products {
     key ID               : UUID;
-        Name             : String; // default 'NoName';
+        Name             : String not null; // default 'NoName';
         Description      : String;
         ImageUrl         : String;
         ReleaseDate      : DateTime default $now;
