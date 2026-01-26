@@ -32,6 +32,26 @@ type Address {
 
 // };
 
+// type Gender: String enum {
+//     mame;
+//     female;
+// }
+
+// entity  Order {
+//     clientGender: Gender;
+//     status: Integer enum{
+//         Submitted = 1;
+//         fullfiller = 2;
+//         shipped = 3;
+//         cancel = -1;
+//     };
+//     priority: String @assert.range enum{
+//         high;
+//         medium;
+//         low;
+//     };
+// };
+
 type Dec: Decimal(16,2);
 entity Products {
     key ID               : UUID;
