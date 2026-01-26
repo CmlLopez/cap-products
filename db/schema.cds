@@ -1,7 +1,7 @@
 namespace com.logali;
 
 // Type personalizado: no recomendado por SAP
-type Name              : String(50);
+type Name : String(50);
 
 // Type estructurado:
 type Address {
@@ -61,7 +61,8 @@ type Address {
 
 // };
 
-type Dec: Decimal(16,2);
+type Dec  : Decimal(16, 2);
+
 entity Products {
     key ID               : UUID;
         Name             : String not null; // default 'NoName';
@@ -163,4 +164,33 @@ entity SalesData {
 
 }
 
-entity SelProducts as select Name from Products where Name like '%Soda%';
+entity SelProducts   as
+    select Name from Products
+    where
+        Name like '%Soda%';
+
+entity SelProducts3  as
+    select from Products
+    left join ProductReview
+        on Products.Name = ProductReview.Name
+    {
+        Rating,
+        Products.Name,
+        sum(Price) as TotalPrice
+    }
+    group by
+        Rating,
+        Products.Name
+    order by
+        Rating;
+
+entity ProjProducts  as projection on Products;
+entity ProjProducts2 as projection on Products {
+    *
+};
+
+entity ProjProducts3 as
+    projection on Products {
+        ReleaseDate,
+        Name
+    };
