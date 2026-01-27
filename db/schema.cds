@@ -164,12 +164,12 @@ entity SalesData {
 
 }
 
-entity SelProducts   as
+entity SelProducts                  as
     select Name from Products
     where
         Name like '%Soda%';
 
-entity SelProducts3  as
+entity SelProducts3                 as
     select from Products
     left join ProductReview
         on Products.Name = ProductReview.Name
@@ -184,13 +184,24 @@ entity SelProducts3  as
     order by
         Rating;
 
-entity ProjProducts  as projection on Products;
-entity ProjProducts2 as projection on Products {
-    *
-};
+entity ProjProducts                 as projection on Products;
 
-entity ProjProducts3 as
+entity ProjProducts2                as
+    projection on Products {
+        *
+    };
+
+entity ProjProducts3                as
     projection on Products {
         ReleaseDate,
         Name
     };
+
+entity ParamProducts (pName: String) as
+    select from Products {
+        Name,
+        Price,
+        Quantity
+    }
+    where
+        Name = : pName;
