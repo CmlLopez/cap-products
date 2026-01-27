@@ -76,6 +76,12 @@ entity Products {
         Width            : Decimal(16, 2);
         Depth            : Decimal(16, 2);
         Quantity         : Decimal(16, 2);
+        Supplier_Id      : UUID;
+        ToSupplier       : Association to one Suppliers
+                               on ToSupplier.ID = Supplier_Id;
+        UnitOfMeasure_Id : String(2);
+        ToUnitOfMeasure  : Association to UnitOfMeasures
+                               on ToUnitOfMeasure.ID = UnitOfMeasure_Id;
 
 }
 
