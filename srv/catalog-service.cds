@@ -12,7 +12,9 @@ service CatalogService {
     // entity ProjProducts2Srv as projection on logali.ProjProducts2;
     // entity ProjProducts3Srv as projection on logali.ProjProducts3;
 
-    entity ParamProductsSrv as projection on logali.ParamProducts;
+    // entity ParamProductsSrv as projection on logali.ParamProducts;
+    // entity ProjParamProducts as projection on logali.ProjParamProducts;
+    
     
     
     //entity Suppliers_01 as projection on logali.Suppliers_01;
