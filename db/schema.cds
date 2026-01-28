@@ -81,6 +81,8 @@ entity Products {
         Currency         : Association to Currencies;
         DimensionUnit    : Association to DimensionUnits;
         Category         : Association to Categories;
+        ToSalesData      : Association to many SalesData
+                               on ToSalesData.Product = $self;
 }
 
 // Tipo 1: sin estructuras entity plano
@@ -163,9 +165,11 @@ entity ProductReview {
 
 entity SalesData {
     key ID           : UUID;
-        Deliverydate : DateTime;
+        DeliveryDate : DateTime;
         Revenue      : Decimal(16, 2);
-
+        Product      : Decimal(16, 2);
+        Currency     : Association to Currencies;
+        DeliveryMont : Date;
 }
 
 entity SelProducts   as
