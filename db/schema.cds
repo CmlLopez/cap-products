@@ -1,5 +1,8 @@
 namespace com.logali;
 
+using {cuid} from '@sap/cds/common';
+
+//uSAR CUID;   
 // Type personalizado: no recomendado por SAP
 type Name : String(50);
 
@@ -63,8 +66,8 @@ type Address {
 
 type Dec  : Decimal(16, 2);
 
-entity Products {
-    key ID               : UUID;
+entity Products: cuid  {
+    // key ID               : UUID;
         Name             : String not null; // default 'NoName';
         Description      : String;
         ImageUrl         : String;
