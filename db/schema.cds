@@ -91,7 +91,15 @@ entity Orders {
     key ID       : UUID;
         Date     : Date;
         Customer : String;
+        Item     : Composition of OrderItems;
 };
+
+entity OrderItems {
+    key ID       : UUID;
+        Order    : Association to Orders;
+        Product  : Association to Products;
+        Quantity : Integer;
+}
 
 // Tipo 1: sin estructuras entity plano
 entity Suppliers {
@@ -179,13 +187,14 @@ entity SalesData {
     key ID            : UUID;
         DeliveryDate  : DateTime;
         Revenue       : Decimal(16, 2);
-        Product : Association to Products;
+        Product       : Association to Products;
         Currency      : Association to Currencies;
         DeliveryMonth : Association to Months;
 }
 
-entity SelProducts as select from Products;
-entity SelProducts1   as
+entity SelProducts   as select from Products;
+
+entity SelProducts1  as
     select Name from Products
     where
         Name like '%Soda%';
@@ -235,6 +244,6 @@ extend Products with {
     PriceDetermination : String(3);
 };
 
-entity Course{
-    
+entity Course {
+
 };
