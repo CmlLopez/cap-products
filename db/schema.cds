@@ -83,7 +83,15 @@ entity Products {
         Category         : Association to Categories;
         ToSalesData      : Association to many SalesData
                                on ToSalesData.Product = $self;
+        Reviews          : Association to many ProductReview
+                               on Reviews.Product = $self;
 }
+
+entity Orders {
+    key ID       : UUID;
+        Date     : Date;
+        Customer : String;
+};
 
 // Tipo 1: sin estructuras entity plano
 entity Suppliers {
@@ -94,6 +102,8 @@ entity Suppliers {
         Email   : String;
         Phone   : String;
         Fax     : String;
+        Product : Association to many Products
+                      on Product.Supplier = $self;
 
 };
 
@@ -161,18 +171,21 @@ entity ProductReview {
     key Name    : String;
         Rating  : Integer;
         Comment : String;
+        Product : Association to Products;
+
 }
 
 entity SalesData {
-    key ID           : UUID;
-        DeliveryDate : DateTime;
-        Revenue      : Decimal(16, 2);
-        Product      : Decimal(16, 2);
-        Currency     : Association to Currencies;
-        DeliveryMont : Date;
+    key ID            : UUID;
+        DeliveryDate  : DateTime;
+        Revenue       : Decimal(16, 2);
+        Product : Association to Products;
+        Currency      : Association to Currencies;
+        DeliveryMonth : Association to Months;
 }
 
-entity SelProducts   as
+entity SelProducts as select from Products;
+entity SelProducts1   as
     select Name from Products
     where
         Name like '%Soda%';
@@ -220,4 +233,8 @@ entity ParamProducts (pName: String) as
 extend Products with {
     PriceCondition     : String(2);
     PriceDetermination : String(3);
+};
+
+entity Course{
+    
 };
