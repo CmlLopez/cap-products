@@ -68,8 +68,8 @@ type Dec  : Decimal(16, 2);
 
 entity Products: cuid, managed  {
     // key ID               : UUID;
-        Name             : String not null; // default 'NoName';
-        Description      : String;
+        Name             : localized String not null; // default 'NoName';
+        Description      : localized String;
         ImageUrl         : String;
         ReleaseDate      : DateTime default $now;
         //CreationDate     : Date default CURRENT_DATE;
@@ -149,39 +149,40 @@ entity Suppliers_02 {
 
 entity Categories {
     key ID   : String(1);
-        Name : String;
+        Name : localized String;
 };
 
 entity StockAvalability {
     key ID          : Integer;
-        Description : String;
+        Description : localized String;
+        Product: Association to Products;
 }
 
 entity Currencies {
     key ID          : String(3);
-        Description : String;
+        Description : localized String;
 }
 
 entity UnitOfMeasures {
     key ID          : String(2);
-        Description : String;
+        Description : localized String;
 }
 
 entity DimensionUnits {
     key ID          : String(2);
-        Description : String;
+        Description : localized String;
 }
 
 entity Months {
     key ID               : String(2);
-        Description      : String;
+        Description      : localized String;
         shortdescription : String(3);
 }
 
 entity ProductReview {
     key Name    : String;
         Rating  : Integer;
-        Comment : String;
+        Comment : localized String;
         Product : Association to Products;
 
 }
