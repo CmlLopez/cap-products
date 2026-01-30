@@ -1,8 +1,11 @@
 namespace com.logali;
 
-using {cuid, managed} from '@sap/cds/common';
+using {
+    cuid,
+    managed
+} from '@sap/cds/common';
 
-//uSAR CUID;   
+//uSAR CUID;
 // Type personalizado: no recomendado por SAP
 type Name : String(50);
 
@@ -15,79 +18,30 @@ type Address {
     Country    : String(3);
 };
 
-// type EmailAddresses_01 : many {
-//     kind  : String;
-//     email : String
-// };
-
-// type EmailAddresses_02 {
-//     kind  : String;
-//     email : String
-// };
-
-// entity Emails {
-//     email_01 : EmailAddresses_01;
-//     email_02 : many EmailAddresses_02;
-//     email_03 : many {
-//         kind  : String;
-//         email : String
-//     };
-
-// };
-
-// type Gender: String enum {
-//     mame;
-//     female;
-// }
-
-// entity  Order {
-//     clientGender: Gender;
-//     status: Integer enum{
-//         Submitted = 1;
-//         fullfiller = 2;
-//         shipped = 3;
-//         cancel = -1;
-//     };
-//     priority: String @assert.range enum{
-//         high;
-//         medium;
-//         low;
-//     };
-// };
-
-// entity Cars{
-//     key ID : UUID;
-//     Name: String;
-//     virtual Discount_1: Decimal;
-//     @Core.Computed : false
-//     virtual Discount_2: Decimal;
-
-// };
-
 type Dec  : Decimal(16, 2);
 
-entity Products: cuid, managed  {
+entity Products : cuid, managed {
     // key ID               : UUID;
-        Name             : localized String not null; // default 'NoName';
-        Description      : localized String;
-        ImageUrl         : String;
-        ReleaseDate      : DateTime default $now;
-        //CreationDate     : Date default CURRENT_DATE;
-        DiscontinuedDate : DateTime;
-        Price            : Dec;
-        Height           : type of Price; //Decimal(16, 2);
-        Width            : Decimal(16, 2);
-        Depth            : Decimal(16, 2);
-        Quantity         : Decimal(16, 2);
-        Supplier         : Association to Suppliers;
-        UnitOfMeasure    : Association to UnitOfMeasures;
-        Currency         : Association to Currencies;
-        DimensionUnit    : Association to DimensionUnits;
-        Category         : Association to Categories;
-        ToSalesData      : Association to many SalesData
-                               on ToSalesData.Product = $self;
-        Reviews          : Association to many ProductReview
-                               on Reviews.Product = $self;
+    Name             : localized String not null; // default 'NoName';
+    Description      : localized String;
+    ImageUrl         : String;
+    ReleaseDate      : DateTime default $now;
+    //CreationDate     : Date default CURRENT_DATE;
+    DiscontinuedDate : DateTime;
+    Price            : Dec;
+    Height           : type of Price; //Decimal(16, 2);
+    Width            : Decimal(16, 2);
+    Depth            : Decimal(16, 2);
+    Quantity         : Decimal(16, 2);
+    Supplier         : Association to Suppliers;
+    UnitOfMeasure    : Association to UnitOfMeasures;
+    Currency         : Association to Currencies;
+    DimensionUnit    : Association to DimensionUnits;
+    Category         : Association to Categories;
+    ToSalesData      : Association to many SalesData
+                           on ToSalesData.Product = $self;
+    Reviews          : Association to many ProductReview
+                           on Reviews.Product = $self;
 }
 
 entity Orders {
@@ -118,34 +72,6 @@ entity Suppliers {
 
 };
 
-// Tipo 2: LLamando a estructuras definidas en línea 7
-entity Suppliers_01 {
-    key ID      : UUID;
-        Name    : String;
-        Address : Address;
-        Email   : String;
-        Phone   : String;
-        Fax     : String;
-
-};
-
-// Tipo 3 (inner Type): Se declara la estructura dentro del entity (pooco usado)
-entity Suppliers_02 {
-    key ID      : UUID;
-        Name    : String;
-        Address : {
-            Street     : String;
-            City       : String;
-            State      : String(2);
-            PostalCode : String(5);
-            Country    : String(3);
-
-        };
-        Email   : String;
-        Phone   : String;
-        Fax     : String;
-
-};
 
 entity Categories {
     key ID   : String(1);
@@ -155,7 +81,7 @@ entity Categories {
 entity StockAvalability {
     key ID          : Integer;
         Description : localized String;
-        Product: Association to Products;
+        Product     : Association to Products;
 }
 
 entity Currencies {
@@ -230,25 +156,14 @@ entity ProjProducts3 as
         ReleaseDate,
         Name
     };
-/*
-entity ParamProducts (pName: String) as
-    select from Products {
-        Name,
-        Price,
-        Quantity
-    }
-    where
-        Name = : pName;
 
- entity ProjParamProducts (pName : String) as projection on Products where Name = : pName;
- */
 
 extend Products with {
     PriceCondition     : String(2);
     PriceDetermination : String(3);
 };
 
-entity Course: cuid, managed {
-    Name: String;
+entity Course : cuid, managed {
+    Name : String;
 
 };
