@@ -1,6 +1,6 @@
 namespace com.logali;
 
-using {cuid} from '@sap/cds/common';
+using {cuid, managed} from '@sap/cds/common';
 
 //uSAR CUID;   
 // Type personalizado: no recomendado por SAP
@@ -66,7 +66,7 @@ type Address {
 
 type Dec  : Decimal(16, 2);
 
-entity Products: cuid  {
+entity Products: cuid, managed  {
     // key ID               : UUID;
         Name             : String not null; // default 'NoName';
         Description      : String;
@@ -247,6 +247,7 @@ extend Products with {
     PriceDetermination : String(3);
 };
 
-entity Course {
+entity Course: cuid, managed {
+    Name: String;
 
 };
