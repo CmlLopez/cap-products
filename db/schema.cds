@@ -20,28 +20,31 @@ type Address {
 
 type Dec  : Decimal(16, 2);
 
-entity Products : cuid, managed {
-    // key ID               : UUID;
-    Name             : localized String not null; // default 'NoName';
-    Description      : localized String;
-    ImageUrl         : String;
-    ReleaseDate      : DateTime default $now;
-    //CreationDate     : Date default CURRENT_DATE;
-    DiscontinuedDate : DateTime;
-    Price            : Dec;
-    Height           : type of Price; //Decimal(16, 2);
-    Width            : Decimal(16, 2);
-    Depth            : Decimal(16, 2);
-    Quantity         : Decimal(16, 2);
-    Supplier         : Association to Suppliers;
-    UnitOfMeasure    : Association to UnitOfMeasures;
-    Currency         : Association to Currencies;
-    DimensionUnit    : Association to DimensionUnits;
-    Category         : Association to Categories;
-    ToSalesData      : Association to many SalesData
-                           on ToSalesData.Product = $self;
-    Reviews          : Association to many ProductReview
-                           on Reviews.Product = $self;
+context materials {
+
+    entity Products : cuid, managed {
+        // key ID               : UUID;
+        Name             : localized String not null; // default 'NoName';
+        Description      : localized String;
+        ImageUrl         : String;
+        ReleaseDate      : DateTime default $now;
+        //CreationDate     : Date default CURRENT_DATE;
+        DiscontinuedDate : DateTime;
+        Price            : Dec;
+        Height           : type of Price; //Decimal(16, 2);
+        Width            : Decimal(16, 2);
+        Depth            : Decimal(16, 2);
+        Quantity         : Decimal(16, 2);
+        Supplier         : Association to Suppliers;
+        UnitOfMeasure    : Association to UnitOfMeasures;
+        Currency         : Association to Currencies;
+        DimensionUnit    : Association to DimensionUnits;
+        Category         : Association to Categories;
+        ToSalesData      : Association to many SalesData
+                            on ToSalesData.Product = $self;
+        Reviews          : Association to many ProductReview
+                            on Reviews.Product = $self;
+    }
 }
 
 entity Orders {
